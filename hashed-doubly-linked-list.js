@@ -28,12 +28,12 @@ var HashedDoublyLinkedList = function(arr=[], opts={}){
 
 		onError: opts.onError || function(errorMessage){
 			console.error(errorMessage);
-			return;
-    	},
+		},
 
-    	append: function(key, val, overwrite=false){
+		append: function(key, val, overwrite=false){
 			if (obj.list[key] && !overwrite){
 				obj.onError('HashedDoublyLinkedList.append error: key already exists. Key: ' + key);
+				return;
 			}
 
 			obj.list[key] = new Node(key, val);
@@ -121,9 +121,8 @@ var HashedDoublyLinkedList = function(arr=[], opts={}){
 		}
 	}
 
-	for (let i=0; i<arr.length; i++){
+	for (let i=0; i<arr.length; i++)
 		obj.append(arr[i][0], arr[i][1]);
-	}
 
 	return obj;
 }
